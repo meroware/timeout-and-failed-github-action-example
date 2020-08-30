@@ -10,6 +10,6 @@ jobs:
         with:
           python-version: '3.x'
       - name: no timeout
-        run: timeout 10 python ./sleep.py
-      - name: timeout
-        run: timeout 1 python ./sleep.py
+        run: timeout 10 python ./sleep.py || echo 'timeout'
+      - name: timeout # We add or so that return code is not none-zero which causes pipeline to fail
+        run: timeout 1 python ./sleep.py || echo 'timeout'
