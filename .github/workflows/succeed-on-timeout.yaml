@@ -1,9 +1,9 @@
-name: Fail On Not Timeout
+name: Succeed On Timeout
 on: [push]
 jobs:
-  audit_action_job:
+  succeed_job:
     runs-on: ubuntu-latest
-    name: A job to test audit action 
+    name: A job that succeeds
     steps:
       - uses: actions/checkout@v2
       - name: Run file with timeout
