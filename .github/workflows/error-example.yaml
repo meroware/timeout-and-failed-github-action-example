@@ -1,0 +1,13 @@
+name: Error example
+on: [push]
+jobs:
+  failure_job:
+    runs-on: ubuntu-latest
+    name: A cool job
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: no timeout so will run code that will error out
+        run: timeout 10 python ./error.py || if [[ $? != 124 && $? != 0 ]]; then exit $?; fi
