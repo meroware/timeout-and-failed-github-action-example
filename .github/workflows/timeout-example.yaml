@@ -1,0 +1,17 @@
+name: Timeout example
+on: [push]
+jobs:
+  failure_job:
+    runs-on: ubuntu-latest
+    name: A cool job
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: no timeout
+        run: timeout 10 python ./sleep.py
+      - name: timeout
+        run: timeout 10 python ./sleep.py
+      - name: continue to do more stuff
+        run: echo "I did more stuff"
